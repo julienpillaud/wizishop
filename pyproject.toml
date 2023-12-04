@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "wizishop"
+version = "0.1.0"
+description = ""
+authors = ["Julien Pillaud <julien.pillaud@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pydantic = "^2.5.2"
+httpx = "^0.25.2"
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.1.6"
+mypy = "^1.7.1"
+pytest = "^7.4.3"
+python-dotenv = "^1.0.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
