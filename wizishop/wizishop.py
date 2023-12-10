@@ -1,16 +1,25 @@
+from json import JSONDecodeError
 from typing import Any
 
 import httpx
 
 from wizishop.entities.product import ProductResponse, ProductStatus, SortableField
-from wizishop.entities.response import WiziShopResponse
+from wizishop.entities.response import WiziShopResponse, WiziShopErrorResponse
 from wizishop.entities.sku import UpdateStockMethod
 
 API_URL = "https://api.wizishop.com/v3"
 
 
 class WiziShopError(Exception):
-    pass
+    def __init__(self, response: httpx.Response):
+        super().__init__(response.text)
+
+        self.error: Any = None
+        try:
+            error = response.json()
+            self.error = WiziShopErrorResponse.model_validate(error)
+        except JSONDecodeError as json_decode_error:
+            self.error = json_decode_error
 
 
 class WiziShopClient:
@@ -22,7 +31,7 @@ class WiziShopClient:
             response = client.post(url, json=data)
 
         if response.status_code != httpx.codes.CREATED:
-            raise WiziShopError
+            raise WiziShopError(response)
 
         account = response.json()
         token = account["token"]
@@ -41,7 +50,7 @@ class WiziShopClient:
             response = client.request(method=method, url=url, params=params, json=json)
 
         if response.status_code != expected_status:
-            raise WiziShopError
+            raise WiziShopError(response)
 
         return response
 
