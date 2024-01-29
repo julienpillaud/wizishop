@@ -4,7 +4,7 @@ from typing import Any
 import httpx
 
 from wizishop.entities.product import ProductResponse, ProductStatus, SortableField
-from wizishop.entities.response import WiziShopResponse, WiziShopErrorResponse
+from wizishop.entities.response import WiziShopErrorResponse, WiziShopResponse
 from wizishop.entities.sku import UpdateStockMethod
 
 API_URL = "https://api.wizishop.com/v3"
