@@ -87,7 +87,7 @@ class WiziShopClient:
 
     def update_sku_stock(
         self, sku: str, stock: int, method: UpdateStockMethod = "replace"
-    ):
+    ) -> WiziShopResponse:
         """Update stock for a given SKU
 
         :param sku: Stock-keeping unit
