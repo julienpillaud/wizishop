@@ -13,8 +13,8 @@ httpx = "^0.25.2"
 [tool.poetry.group.dev.dependencies]
 ruff = "^0.5.0"
 mypy = "^1.10.1"
-pytest = "^7.4.3"
-python-dotenv = "^1.0.0"
+pytest = "^8.2.2"
+python-dotenv = "^1.0.1"
 
 [build-system]
 requires = ["poetry-core"]
@@ -22,19 +22,20 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.ruff.lint]
 select = [
-    # pycodestyle
-    "E", "W",
-    # Pyflakes
-    "F",
-    # pyupgrade
-    "UP",
-    # flake8-bugbear
-    "B",
-    # flake8-simplify
-    "SIM",
-    # isort
-    "I",
+    "E", "W",  # pycodestyle
+    "F",  # Pyflakes
+    "UP",  # pyupgrade
+    "B",  # flake8-bugbear
+    "SIM",  # flake8-simplify
+    "I",  # isort
+    "PL",  # Pylint
 ]
+ignore = [
+    "PLR0913",  # Too many arguments in function definition
+    "PLC0414"  # Import alias does not rename original package
+]
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["PLR2004"]  # Magic value used in comparison
 
 [tool.mypy]
 strict = true
