@@ -1,4 +1,5 @@
 from wizishop import WiziShopClient
+from wizishop.entities.product import Product
 
 
 def test_get_products(client: WiziShopClient) -> None:
@@ -29,15 +30,14 @@ def test_get_products_with_status(client: WiziShopClient) -> None:
     assert all(product.status == "visible" for product in products.results)
 
 
-def test_get_products_with_sku(client: WiziShopClient) -> None:
-    sku = "5c0a297a6f22980815358aae"
-    products = client.get_products(sku=sku)
+def test_get_products_with_sku(client: WiziShopClient, product: Product) -> None:
+    products = client.get_products(sku=product.sku)
 
     assert products
     assert products.page == 1
     assert products.limit == 20
     assert len(products.results) == 1
-    assert products.results[0].sku == sku
+    assert products.results[0].sku == product.sku
 
 
 def test_get_products_with_sort(client: WiziShopClient) -> None:
