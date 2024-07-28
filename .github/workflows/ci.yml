@@ -28,4 +28,7 @@ jobs:
         uses: ./.github/actions/setup
 
       - name: Run tests
+        env:
+          WIZISHOP_USERNAME: ${{ secrets.WIZISHOP_USERNAME }}
+          WIZISHOP_PASSWORD: ${{ secrets.WIZISHOP_PASSWORD }}
         run: poetry run pytest
