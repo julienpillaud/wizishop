@@ -17,8 +17,8 @@ class Authentication(BaseModel):
 
 @pytest.fixture
 def authentication() -> Authentication:
-    username = os.getenv("USERNAME")
-    password = os.getenv("PASSWORD")
+    username = os.getenv("WIZISHOP_USERNAME")
+    password = os.getenv("WIZISHOP_PASSWORD")
     if username and password:
         return Authentication(username=username, password=password)
 
