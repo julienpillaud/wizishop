@@ -1,9 +1,5 @@
 [tool.poetry]
-name = "wizishop"
-version = "0.1.1"
-description = ""
-authors = ["Julien Pillaud <julien.pillaud@gmail.com>"]
-readme = "README.md"
+package-mode = false
 
 [tool.poetry.dependencies]
 python = "^3.11"
@@ -11,14 +7,13 @@ pydantic = "^2.8.2"
 httpx = "^0.25.2"
 
 [tool.poetry.group.dev.dependencies]
-ruff = "^0.5.5"
-mypy = "^1.11.0"
-pytest = "^8.3.2"
-python-dotenv = "^1.0.1"
+ruff = "0.5.7"
+mypy = "1.11.1"
+pytest = "8.3.2"
+python-dotenv = "1.0.1"
 
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+[tool.ruff]
+output-format = "concise"
 
 [tool.ruff.lint]
 select = [
@@ -32,7 +27,6 @@ select = [
 ]
 ignore = [
     "PLR0913",  # Too many arguments in function definition
-    "PLC0414"  # Import alias does not rename original package
 ]
 [tool.ruff.lint.per-file-ignores]
 "tests/*" = ["PLR2004"]  # Magic value used in comparison
