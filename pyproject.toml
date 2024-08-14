@@ -1,5 +1,8 @@
 [tool.poetry]
-package-mode = false
+authors = []
+description = ""
+name = "wizishop"
+version = "0"
 
 [tool.poetry.dependencies]
 python = "^3.11"
