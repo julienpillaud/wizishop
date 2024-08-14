@@ -11,5 +11,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Bump version
-        run: echo ${{ github.ref_name }}
+      - name: Update pyproject.toml
+        run: |
+          sed -i "s/^version = \".*\"/version = \"${{ github.ref_name }}\"/" pyproject.toml
+          git add pyproject.toml
+          git commit -m "Release version ${{ github.ref_name }}"
+          git push
