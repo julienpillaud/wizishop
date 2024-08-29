@@ -6,7 +6,7 @@ runs:
 
   steps:
     - name: Set up uv
-      run: curl -LsSf https://astral.sh/uv/0.3.3/install.sh | sh
+      run: curl -LsSf https://astral.sh/uv/0.4.0/install.sh | sh
       shell: bash
 
     - name: Set up Python
@@ -24,5 +24,5 @@ runs:
           uv-${{ runner.os }}
 
     - name: Install dependencies
-      run: uv sync --no-install-project
+      run: uv sync
       shell: bash
