@@ -3,11 +3,8 @@ name: CI
 on: [push, pull_request]
 
 jobs:
-  lint:
-    env:
-      # Configure a constant location for the uv cache
-      UV_CACHE_DIR: /tmp/.uv-cache
 
+  lint:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -22,14 +19,7 @@ jobs:
           uv run ruff check .
           uv run mypy .
 
-      - name: Minimize uv cache
-        run: uv cache prune --ci
-
   tests:
-    env:
-      # Configure a constant location for the uv cache
-      UV_CACHE_DIR: /tmp/.uv-cache
-
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -43,6 +33,3 @@ jobs:
           WIZISHOP_USERNAME: ${{ secrets.WIZISHOP_USERNAME }}
           WIZISHOP_PASSWORD: ${{ secrets.WIZISHOP_PASSWORD }}
         run: uv run pytest
-
-      - name: Minimize uv cache
-        run: uv cache prune --ci
