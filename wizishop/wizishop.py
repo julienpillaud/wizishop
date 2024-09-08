@@ -1,3 +1,4 @@
+import logging
 from json import JSONDecodeError
 from typing import Any
 
@@ -6,6 +7,8 @@ import httpx
 from wizishop.entities.product import ProductResponse, ProductStatus, SortableField
 from wizishop.entities.response import WiziShopErrorResponse, WiziShopResponse
 from wizishop.entities.sku import UpdateStockMethod
+
+logger = logging.getLogger(__name__)
 
 API_URL = "https://api.wizishop.com/v3"
 

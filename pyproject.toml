@@ -3,13 +3,13 @@ name = "wizishop"
 version = "0.1.0"
 requires-python = "==3.11.6"
 dependencies = [
-    "pydantic==2.8.2",
+    "pydantic==2.9.0",
     "httpx==0.25.2",
 ]
 
 [tool.uv]
 dev-dependencies = [
-    "ruff==0.6.3",
+    "ruff==0.6.4",
     "mypy==1.11.2",
     "pytest==8.3.2",
     "python-dotenv==1.0.1"
@@ -36,3 +36,7 @@ ignore = [
 
 [tool.mypy]
 strict = true
+
+[tool.pytest.ini_options]
+log_cli = true
+log_cli_level = "INFO"
