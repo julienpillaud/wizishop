@@ -11,6 +11,7 @@ from wizishop.entities.sku import UpdateStockMethod
 logger = logging.getLogger(__name__)
 
 API_URL = "https://api.wizishop.com/v3"
+DEFAULT_PAGINATION_LIMIT = 20
 
 
 class WiziShopError(Exception):
@@ -59,7 +60,7 @@ class WiziShopClient:
 
     def get_products(
         self,
-        limit: int = 20,
+        limit: int = DEFAULT_PAGINATION_LIMIT,
         page: int = 1,
         status: ProductStatus | None = None,
         sku: str | None = None,

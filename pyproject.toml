@@ -3,18 +3,18 @@ name = "wizishop"
 version = "0.2.0"
 requires-python = ">=3.12"
 dependencies = [
-    "httpx>=0.28.1",
-    "pydantic>=2.10.6",
+    "httpx>=0.28",
+    "pydantic>=2.10",
 ]
 
 [tool.uv]
 dev-dependencies = [
-    "coverage>=7.6.12",
-    "pre-commit>=4.1.0",
-    "pyright>=1.1.396",
-    "pytest>=8.3.3",
-    "python-dotenv>=1.0.1",
-    "ruff>=0.11.0",
+    "coverage>=7.7",
+    "mypy>=1.15",
+    "pre-commit>=4.1",
+    "pytest>=8.4",
+    "python-dotenv>=1.0",
+    "ruff>=0.12.0",
 ]
 
 [tool.ruff]
@@ -34,15 +34,15 @@ select = [
 ignore = [
     "PLR0913",  # Too many arguments in function definition
 ]
-[tool.ruff.lint.per-file-ignores]
-"tests/*" = ["PLR2004"]  # Magic value used in comparison
 
-[tool.pyright]
-venvPath = "."
-venv = ".venv"
-typeCheckingMode = "strict"
+[tool.mypy]
+strict = true
+plugins = ['pydantic.mypy']
 
 [tool.pytest.ini_options]
+testpaths = [
+    "tests",
+]
 log_cli = true
 log_cli_level = "INFO"
 log_cli_format = "%(asctime)s [%(levelname)8s] %(name)30s - %(message)s"
