@@ -1,20 +1,20 @@
 [project]
 name = "wizishop"
 version = "0.2.0"
-requires-python = ">=3.12"
+requires-python = ">=3.14"
 dependencies = [
-    "httpx>=0.28",
-    "pydantic>=2.10",
+    "httpx>=0.28.1",
+    "pydantic>=2.13.4",
 ]
 
-[tool.uv]
-dev-dependencies = [
-    "coverage>=7.7",
-    "mypy>=1.15",
-    "pre-commit>=4.1",
-    "pytest>=8.4",
-    "python-dotenv>=1.0",
-    "ruff>=0.12.0",
+[dependency-groups]
+dev = [
+    "mypy==2.1.0",
+    "pydantic-settings==2.14.1",
+    "pytest==9.0.3",
+    "pytest-asyncio==1.3.0",
+    "ruff==0.15.13",
+    "ty==0.0.35",
 ]
 
 [tool.ruff]
@@ -22,27 +22,31 @@ output-format = "concise"
 
 [tool.ruff.lint]
 select = [
-    "E", "W",  # pycodestyle
-    "F",  # Pyflakes
-    "UP",  # pyupgrade
-    "B",  # flake8-bugbear
-    "SIM",  # flake8-simplify
-    "I",  # isort
-    "PL",  # Pylint
+    "E", "W", # pycodestyle
+    "F", # Pyflakes
+    "UP", # pyupgrade
+    "B", # flake8-bugbear
+    "SIM", # flake8-simplify
+    "I", # isort
+    "PL", # Pylint
     "RUF",
+    "ANN", # flake8-annotations
 ]
 ignore = [
-    "PLR0913",  # Too many arguments in function definition
+    "ANN401", # any-type
 ]
+
+[tool.ty.terminal]
+output-format = "concise"
 
 [tool.mypy]
 strict = true
+disable_error_code = [
+]
 plugins = ['pydantic.mypy']
 
 [tool.pytest.ini_options]
-testpaths = [
-    "tests",
-]
+testpaths = ["tests"]
 log_cli = true
-log_cli_level = "INFO"
+log_cli_level = "info"
 log_cli_format = "%(asctime)s [%(levelname)8s] %(name)30s - %(message)s"

@@ -1,38 +1,39 @@
-import os
-
 import pytest
-from dotenv import load_dotenv
-from pydantic import BaseModel
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
 from wizishop import WiziShopClient
 from wizishop.entities.product import Product
 
-load_dotenv()
 
+class Settings(BaseSettings):
+    model_config = SettingsConfigDict(
+        extra="ignore",
+        frozen=True,
+        env_file=".env",
+    )
 
-class Authentication(BaseModel):
     username: str
     password: str
 
 
-@pytest.fixture
-def authentication() -> Authentication:
-    username = os.getenv("WIZISHOP_USERNAME")
-    password = os.getenv("WIZISHOP_PASSWORD")
-    if username and password:
-        return Authentication(username=username, password=password)
-
-    raise ValueError("Missing authentication values")
+@pytest.fixture(scope="session")
+def settings() -> Settings:
+    return Settings()  # ty: ignore[missing-argument]
 
 
-@pytest.fixture
-def client(authentication: Authentication) -> WiziShopClient:
-    return WiziShopClient(authentication.username, authentication.password)
+@pytest.fixture(scope="session")
+def client(settings: Settings) -> WiziShopClient:
+    return WiziShopClient(settings.username, settings.password)
 
 
 @pytest.fixture
 def product(client: WiziShopClient) -> Product:
-    products = client.get_products().results
-    if product := next((product for product in products if product.stock), None):
-        return product
-    raise ValueError("No product with stock")
+    products = client.get_products(status="visible").results
+    if not products:
+        raise RuntimeError()
+
+    product = products[0]
+    if not product.stock:
+        raise RuntimeError()
+
+    return product
