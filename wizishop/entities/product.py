@@ -2,8 +2,10 @@ from typing import Literal
 
 from pydantic import BaseModel
 
-ProductStatus = Literal["draft", "scheduled", "visible", "hidden", "unavailable"]
+DEFAULT_PAGINATION_LIMIT = 20
+
 SortableField = Literal["id", "sku", "label", "stock", "weight"]
+ProductStatus = Literal["draft", "scheduled", "visible", "hidden", "unavailable"]
 
 
 class Product(BaseModel):

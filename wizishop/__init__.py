@@ -1,2 +1,2 @@
-from .wizishop import WiziShopClient as WiziShopClient  # noqa
-from .wizishop import WiziShopError as WiziShopError  # noqa
+from .client import WiziShopClient as WiziShopClient
+from .exceptions import WiziShopError as WiziShopError

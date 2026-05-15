@@ -1,6 +1,5 @@
 from wizishop import WiziShopClient
-from wizishop.entities.product import Product
-from wizishop.wizishop import DEFAULT_PAGINATION_LIMIT
+from wizishop.entities.product import DEFAULT_PAGINATION_LIMIT, Product
 
 
 def test_get_products(client: WiziShopClient) -> None:
