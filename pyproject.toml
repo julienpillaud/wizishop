@@ -1,6 +1,7 @@
 [project]
 name = "wizishop"
-version = "0.3.0"
+# use dynamic version to avoid sync issues with uv.lock after 'release-please'
+dynamic = ["version"]
 requires-python = ">=3.14"
 dependencies = [
     "httpx>=0.28.1",
