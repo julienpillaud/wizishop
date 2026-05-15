@@ -23,4 +23,7 @@ jobs:
         run: uv sync
 
       - name: Run tests
+        env:
+          USERNAME: ${{ secrets.USERNAME }}
+          PASSWORD: ${{ secrets.PASSWORD }}
         run: uv run pytest
