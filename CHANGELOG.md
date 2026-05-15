@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.1](https://github.com/julienpillaud/wizishop/compare/0.3.0...0.3.1) (2026-05-15)
+
+
+### Bug Fixes
+
+* pyproject version ([#3](https://github.com/julienpillaud/wizishop/issues/3)) ([8ffbda6](https://github.com/julienpillaud/wizishop/commit/8ffbda6f73105ecdb47692a69282eb235a967330))
+
 ## [0.3.0](https://github.com/julienpillaud/wizishop/compare/0.2.0...0.3.0) (2026-05-15)
 
 
